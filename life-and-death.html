@@ -42,14 +42,12 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            position: relative;
         }
 
         .page {
             max-width: 85vw;
             max-height: 85vh;
             object-fit: contain;
-            display: block;
         }
 
         .arrow {
@@ -84,23 +82,6 @@
             transform: translateX(-50%);
             font-size: 12px;
         }
-
-        @media (max-width: 600px) {
-
-            .page {
-                max-width: 82vw;
-                max-height: 78vh;
-            }
-
-            .arrow {
-                font-size: 24px;
-            }
-
-            .back {
-                top: 20px;
-                left: 20px;
-            }
-        }
     </style>
 </head>
 
@@ -114,7 +95,7 @@
 
         <button class="arrow left" onclick="previousPage()">←</button>
 
-        <img id="page" class="page" src="1.png" alt="Life & Death page 1">
+        <img id="page" class="page" src="./1.png" alt="Life & Death page 1">
 
         <button class="arrow right" onclick="nextPage()">→</button>
 
@@ -133,7 +114,7 @@
 
             const image = document.getElementById("page");
 
-            image.src = currentPage + ".png";
+            image.src = "./" + currentPage + ".png";
 
             image.alt = "Life & Death page " + currentPage;
 
