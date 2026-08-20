@@ -17,14 +17,15 @@
             color: #111;
             font-family: Arial, sans-serif;
             overflow: hidden;
+            user-select: none;
         }
 
         .back {
             position: fixed;
-            top: 25px;
-            left: 30px;
+            top: 22px;
+            left: 25px;
             z-index: 10;
-            font-size: 14px;
+            font-size: 12px;
         }
 
         .back a {
@@ -45,9 +46,10 @@
         }
 
         .page {
-            max-width: 85vw;
-            max-height: 85vh;
+            max-width: 90vw;
+            max-height: 90vh;
             object-fit: contain;
+            display: block;
         }
 
         .arrow {
@@ -56,31 +58,51 @@
             transform: translateY(-50%);
             background: none;
             border: none;
-            font-size: 30px;
+            font-size: 24px;
             cursor: pointer;
             color: #111;
-            padding: 20px;
+            padding: 30px;
+            opacity: 0.35;
             z-index: 5;
         }
 
         .arrow:hover {
-            opacity: 0.5;
+            opacity: 1;
         }
 
         .left {
-            left: 20px;
+            left: 0;
         }
 
         .right {
-            right: 20px;
+            right: 0;
         }
 
         .counter {
             position: fixed;
-            bottom: 25px;
+            bottom: 18px;
             left: 50%;
             transform: translateX(-50%);
-            font-size: 12px;
+            font-size: 10px;
+            opacity: 0.5;
+        }
+
+        @media (max-width: 600px) {
+
+            .page {
+                max-width: 88vw;
+                max-height: 82vh;
+            }
+
+            .arrow {
+                font-size: 20px;
+                padding: 20px;
+            }
+
+            .back {
+                top: 18px;
+                left: 18px;
+            }
         }
     </style>
 </head>
@@ -95,7 +117,12 @@
 
         <button class="arrow left" onclick="previousPage()">←</button>
 
-    <img id="page" class="page" src="images/ruminations/life-and-death/1.png" alt="Life & Death page 1">
+        <img
+            id="page"
+            class="page"
+            src="images/ruminations/life-and-death/1.png"
+            alt="Life & Death page 1"
+        >
 
         <button class="arrow right" onclick="nextPage()">→</button>
 
@@ -110,16 +137,31 @@
         let currentPage = 1;
         const totalPages = 47;
 
+        const image = document.getElementById("page");
+        const counter = document.getElementById("counter");
+
+        function imagePath(page) {
+            return "images/ruminations/life-and-death/" + page + ".png";
+        }
+
+        function preload(page) {
+            if (page >= 1 && page <= totalPages) {
+                const img = new Image();
+                img.src = imagePath(page);
+            }
+        }
+
         function updatePage() {
 
-            const image = document.getElementById("page");
-
-         image.src = "images/ruminations/life-and-death/" + currentPage + ".png";
+            image.src = imagePath(currentPage);
 
             image.alt = "Life & Death page " + currentPage;
 
-            document.getElementById("counter").textContent =
+            counter.textContent =
                 currentPage + " / " + totalPages;
+
+            preload(currentPage + 1);
+            preload(currentPage - 1);
         }
 
         function nextPage() {
@@ -149,6 +191,46 @@
             }
 
         });
+
+        let startX = 0;
+
+        document.addEventListener("touchstart", function(event) {
+            startX = event.touches[0].clientX;
+        });
+
+        document.addEventListener("touchend", function(event) {
+
+            const endX = event.changedTouches[0].clientX;
+            const difference = endX - startX;
+
+            if (Math.abs(difference) > 50) {
+
+                if (difference < 0) {
+                    nextPage();
+                } else {
+                    previousPage();
+                }
+
+            }
+
+        });
+
+        document.addEventListener("click", function(event) {
+
+            if (event.target.closest(".arrow") ||
+                event.target.closest(".back")) {
+                return;
+            }
+
+            if (event.clientX < window.innerWidth / 2) {
+                previousPage();
+            } else {
+                nextPage();
+            }
+
+        });
+
+        preload(2);
 
     </script>
 
