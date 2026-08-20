@@ -1,18 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blued Together - Sophie</title>
+
+    <title>BLUED TOGETHER - Sophie Cole</title>
 
     <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
         body {
             margin: 0;
-            padding: 40px;
-            font-family: Arial, sans-serif;
-            font-size: 14px;
-            color: #111;
+            padding: 30px;
             background: #fff;
+            color: #111;
+            font-family: Arial, sans-serif;
+            font-size: 12px;
         }
 
         a {
@@ -25,34 +34,50 @@
         }
 
         .back {
-            margin-bottom: 60px;
+            margin-bottom: 70px;
         }
 
         .title {
-            margin-bottom: 30px;
-        }
-
-        .description {
-            max-width: 600px;
-            line-height: 1.5;
             margin-bottom: 50px;
         }
+
+        .video {
+            width: 100%;
+            max-width: 1100px;
+        }
+
+        .video iframe {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            border: none;
+            display: block;
+        }
+
     </style>
+
 </head>
 
 <body>
 
     <div class="back">
-        <a href="videos.html">← BACK TO VIDEOS</a>
+        <a href="videos.html">← BACK</a>
     </div>
 
     <div class="title">
         BLUED TOGETHER
     </div>
 
-    <div class="description">
-        This is where information about Blued Together will go.
+    <div class="video">
+
+        <iframe
+            src="https://www.youtube.com/embed/1fc0gi66x3E"
+            title="BLUED TOGETHER"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen>
+        </iframe>
+
     </div>
 
 </body>
+
 </html>
