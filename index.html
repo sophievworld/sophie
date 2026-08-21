@@ -36,21 +36,31 @@
             text-align: center;
         }
 
+        /* SIGNATURE */
+
         .logo {
             margin-bottom: 55px;
         }
+
+        .logo img {
+            display: block;
+            width: 180px;
+            max-width: 60vw;
+            height: auto;
+            margin: 0 auto;
+        }
+
+        /* MAIN GROUPS */
 
         .group {
             margin-bottom: 38px;
         }
 
-        .group:last-child {
-            margin-bottom: 0;
-        }
-
         .category {
             margin: 14px 0;
         }
+
+        /* CATEGORY TITLES */
 
         .category > a {
             color: inherit;
@@ -60,6 +70,8 @@
         .category > a:hover {
             text-decoration: underline;
         }
+
+        /* SUBMENU */
 
         .contents {
             display: none;
@@ -84,6 +96,8 @@
             text-decoration: underline;
         }
 
+        /* SPACE BETWEEN THE TWO GROUPS */
+
         .separator {
             height: 30px;
         }
@@ -92,43 +106,76 @@
 
 </head>
 
+
 <body>
+
 
     <div class="menu">
 
+
+        <!-- SIGNATURE -->
+
         <div class="logo">
-            SOPHIE COLE
+
+            <img src="images/logo/LOGO.PNG"
+                 alt="Sophie Cole">
+
         </div>
 
 
-        <!-- CAMERA -->
+        <!-- CAMERA / PAPER / PEN -->
 
         <div class="group">
 
+
+            <!-- CAMERA -->
+
             <div class="category">
-                <a href="#" onclick="toggleMenu('camera'); return false;">
+
+                <a href="#"
+                   onclick="toggleMenu('camera'); return false;">
+
                     CAMERA
+
                 </a>
 
-                <div id="camera" class="contents">
+
+                <div id="camera"
+                     class="contents">
+
 
                     <div class="work">
+
                         <a href="blued-together.html">
+
                             Blued Together
+
                         </a>
+
                     </div>
 
+
                     <div class="work">
+
                         <a href="on-the-edge.html">
+
                             On the Edge
+
                         </a>
+
                     </div>
 
+
                     <div class="work">
+
                         <a href="photos.html">
+
                             Stills
+
                         </a>
+
                     </div>
+
 
                 </div>
 
@@ -139,17 +186,28 @@
 
             <div class="category">
 
-                <a href="#" onclick="toggleMenu('paper'); return false;">
+                <a href="#"
+                   onclick="toggleMenu('paper'); return false;">
+
                     PAPER
+
                 </a>
 
-                <div id="paper" class="contents">
+
+                <div id="paper"
+                     class="contents">
+
 
                     <div class="work">
+
                         <a href="tangibles.html">
+
                             Tangibles
+
                         </a>
+
                     </div>
+
 
                 </div>
 
@@ -160,41 +218,63 @@
 
             <div class="category">
 
-                <a href="#" onclick="toggleMenu('pen'); return false;">
+                <a href="#"
+                   onclick="toggleMenu('pen'); return false;">
+
                     PEN
+
                 </a>
 
-                <div id="pen" class="contents">
 
-                    <!-- Future writing goes here -->
+                <div id="pen"
+                     class="contents">
+
+                    <!-- Future writing will go here -->
 
                 </div>
 
             </div>
 
+
         </div>
 
+
+        <!-- SPACE -->
 
         <div class="separator"></div>
 
 
-        <!-- FRAGMENTA -->
+        <!-- FRAGMENTA / RUMINATIO -->
 
         <div class="group">
 
+
+            <!-- FRAGMENTA -->
+
             <div class="category">
 
-                <a href="#" onclick="toggleMenu('fragmenta'); return false;">
+                <a href="#"
+                   onclick="toggleMenu('fragmenta'); return false;">
+
                     FRAGMENTA
+
                 </a>
 
-                <div id="fragmenta" class="contents">
+
+                <div id="fragmenta"
+                     class="contents">
+
 
                     <div class="work">
+
                         <a href="fragments.html">
+
                             Fragments
+
                         </a>
+
                     </div>
+
 
                 </div>
 
@@ -205,23 +285,36 @@
 
             <div class="category">
 
-                <a href="#" onclick="toggleMenu('ruminatio'); return false;">
+                <a href="#"
+                   onclick="toggleMenu('ruminatio'); return false;">
+
                     RUMINATIO
+
                 </a>
 
-                <div id="ruminatio" class="contents">
+
+                <div id="ruminatio"
+                     class="contents">
+
 
                     <div class="work">
+
                         <a href="life-and-death.html">
-                            Life & Death
+
+                            Life &amp; Death
+
                         </a>
+
                     </div>
+
 
                 </div>
 
             </div>
 
+
         </div>
+
 
     </div>
 
@@ -237,6 +330,7 @@
         }
 
     </script>
+
 
 </body>
 
