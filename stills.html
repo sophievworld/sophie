@@ -1,28 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-
-    <title>Stills - Sophie Cole</title>
+    <title>Stills - Sophie</title>
 
     <style>
-
-        * {
-            box-sizing: border-box;
-        }
-
         body {
             margin: 0;
             padding: 40px;
-            background: #fff;
-            color: #111;
             font-family: Arial, sans-serif;
             font-size: 14px;
+            color: #111;
+            background: #fff;
         }
 
         a {
@@ -35,53 +26,112 @@
         }
 
         .back {
-            margin-bottom: 70px;
-        }
-
-        .title {
             margin-bottom: 60px;
         }
 
+        .title {
+            margin-bottom: 80px;
+        }
+
+        .year {
+            margin-bottom: 50px;
+        }
+
         .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: flex-start;
+            gap: 80px 50px;
+            padding-bottom: 120px;
+        }
+
+        .photo {
+            width: 22vw;
+            max-width: 420px;
+            min-width: 180px;
+        }
+
+        .photo img {
             width: 100%;
-        }
-
-        .gallery img {
-            display: block;
-            width: auto;
-            max-width: 90%;
             height: auto;
-            margin: 0 auto 150px auto;
+            display: block;
         }
 
-    </style>
+        .photo:hover {
+            opacity: 0.9;
+        }
 
+        @media (max-width: 800px) {
+            body {
+                padding: 25px;
+            }
+
+            .photo {
+                width: 42vw;
+                min-width: 140px;
+            }
+
+            .gallery {
+                gap: 50px 20px;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .photo {
+                width: 100%;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
     <div class="back">
-
         <a href="index.html">← BACK</a>
-
     </div>
-
 
     <div class="title">
-
-        STILLS<br>
-        2025–2026
-
+        CAMERA
     </div>
 
-
-    <div class="gallery">
-
-        <!-- PHOTOS WILL GO HERE -->
-
+    <div class="year">
+        2024–2026
     </div>
 
+    <div class="gallery" id="gallery"></div>
+
+    <script>
+
+        fetch("stills.json")
+            .then(response => response.json())
+            .then(data => {
+
+                const gallery = document.getElementById("gallery");
+
+                data.photos.forEach(filename => {
+
+                    const container = document.createElement("div");
+                    container.className = "photo";
+
+                    const image = document.createElement("img");
+
+                    image.src =
+                        data.folder +
+                        encodeURIComponent(filename);
+
+                    image.alt = "";
+
+                    container.appendChild(image);
+                    gallery.appendChild(container);
+
+                });
+
+            })
+            .catch(error => {
+                console.error("Could not load stills:", error);
+            });
+
+    </script>
 
 </body>
-
 </html>
