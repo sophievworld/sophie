@@ -5,7 +5,8 @@
 
     <meta charset="UTF-8">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
     <title>Sophie Cole</title>
 
@@ -30,41 +31,61 @@
         }
 
         .menu {
+            width: 100%;
+            max-width: 500px;
             text-align: center;
         }
 
         .logo {
-            margin-bottom: 50px;
-        }
-
-        .logo a {
-            color: inherit;
-            text-decoration: none;
+            margin-bottom: 55px;
         }
 
         .group {
-            margin-bottom: 35px;
+            margin-bottom: 38px;
         }
 
         .group:last-child {
             margin-bottom: 0;
         }
 
-        .item {
-            margin: 10px 0;
+        .category {
+            margin: 14px 0;
         }
 
-        a {
+        .category > a {
             color: inherit;
             text-decoration: none;
         }
 
-        a:hover {
+        .category > a:hover {
+            text-decoration: underline;
+        }
+
+        .contents {
+            display: none;
+            margin-top: 12px;
+            margin-bottom: 22px;
+        }
+
+        .contents.open {
+            display: block;
+        }
+
+        .work {
+            margin: 8px 0;
+        }
+
+        .work a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .work a:hover {
             text-decoration: underline;
         }
 
         .separator {
-            height: 35px;
+            height: 30px;
         }
 
     </style>
@@ -79,37 +100,143 @@
             SOPHIE COLE
         </div>
 
+
+        <!-- CAMERA -->
+
         <div class="group">
 
-            <div class="item">
-                <a href="videos.html">CAMERA</a>
+            <div class="category">
+                <a href="#" onclick="toggleMenu('camera'); return false;">
+                    CAMERA
+                </a>
+
+                <div id="camera" class="contents">
+
+                    <div class="work">
+                        <a href="blued-together.html">
+                            Blued Together
+                        </a>
+                    </div>
+
+                    <div class="work">
+                        <a href="on-the-edge.html">
+                            On the Edge
+                        </a>
+                    </div>
+
+                    <div class="work">
+                        <a href="photos.html">
+                            Stills
+                        </a>
+                    </div>
+
+                </div>
+
             </div>
 
-            <div class="item">
-                <a href="works.html">PAPER</a>
+
+            <!-- PAPER -->
+
+            <div class="category">
+
+                <a href="#" onclick="toggleMenu('paper'); return false;">
+                    PAPER
+                </a>
+
+                <div id="paper" class="contents">
+
+                    <div class="work">
+                        <a href="tangibles.html">
+                            Tangibles
+                        </a>
+                    </div>
+
+                </div>
+
             </div>
 
-            <div class="item">
-                <a href="#">PEN</a>
+
+            <!-- PEN -->
+
+            <div class="category">
+
+                <a href="#" onclick="toggleMenu('pen'); return false;">
+                    PEN
+                </a>
+
+                <div id="pen" class="contents">
+
+                    <!-- Future writing goes here -->
+
+                </div>
+
             </div>
 
         </div>
 
+
         <div class="separator"></div>
+
+
+        <!-- FRAGMENTA -->
 
         <div class="group">
 
-            <div class="item">
-                <a href="fragments.html">FRAGMENTA</a>
+            <div class="category">
+
+                <a href="#" onclick="toggleMenu('fragmenta'); return false;">
+                    FRAGMENTA
+                </a>
+
+                <div id="fragmenta" class="contents">
+
+                    <div class="work">
+                        <a href="fragments.html">
+                            Fragments
+                        </a>
+                    </div>
+
+                </div>
+
             </div>
 
-            <div class="item">
-                <a href="ruminations.html">RUMINATIO</a>
+
+            <!-- RUMINATIO -->
+
+            <div class="category">
+
+                <a href="#" onclick="toggleMenu('ruminatio'); return false;">
+                    RUMINATIO
+                </a>
+
+                <div id="ruminatio" class="contents">
+
+                    <div class="work">
+                        <a href="life-and-death.html">
+                            Life & Death
+                        </a>
+                    </div>
+
+                </div>
+
             </div>
 
         </div>
 
     </div>
+
+
+    <script>
+
+        function toggleMenu(id) {
+
+            const menu = document.getElementById(id);
+
+            menu.classList.toggle("open");
+
+        }
+
+    </script>
 
 </body>
 
