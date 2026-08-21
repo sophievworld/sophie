@@ -5,8 +5,7 @@
 
     <meta charset="UTF-8">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Sophie Cole</title>
 
@@ -18,11 +17,41 @@
 
         body {
             margin: 0;
-            padding: 40px;
             background: #fff;
             color: #111;
             font-family: Arial, sans-serif;
             font-size: 14px;
+
+            min-height: 100vh;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .menu {
+            text-align: center;
+        }
+
+        .logo {
+            margin-bottom: 50px;
+        }
+
+        .logo a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .group {
+            margin-bottom: 35px;
+        }
+
+        .group:last-child {
+            margin-bottom: 0;
+        }
+
+        .item {
+            margin: 10px 0;
         }
 
         a {
@@ -34,18 +63,8 @@
             text-decoration: underline;
         }
 
-        .name {
-            margin-bottom: 40px;
-        }
-
-        .navigation {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
-        .works {
-            margin-top: 50px;
+        .separator {
+            height: 35px;
         }
 
     </style>
@@ -54,25 +73,41 @@
 
 <body>
 
-    <div class="name">
-        SOPHIE COLE
-    </div>
+    <div class="menu">
 
-    <div class="navigation">
+        <div class="logo">
+            SOPHIE COLE
+        </div>
 
-        <a href="videos.html">VIDEOS</a>
+        <div class="group">
 
-        <a href="photos.html">PHOTOS</a>
+            <div class="item">
+                <a href="videos.html">CAMERA</a>
+            </div>
 
-        <a href="fragments.html">FRAGMENTS</a>
+            <div class="item">
+                <a href="works.html">PAPER</a>
+            </div>
 
-        <a href="ruminations.html">RUMINATIONS</a>
+            <div class="item">
+                <a href="#">PEN</a>
+            </div>
 
-    </div>
+        </div>
 
-    <div class="works">
+        <div class="separator"></div>
 
-        <a href="works.html">WORKS</a>
+        <div class="group">
+
+            <div class="item">
+                <a href="fragments.html">FRAGMENTA</a>
+            </div>
+
+            <div class="item">
+                <a href="ruminations.html">RUMINATIO</a>
+            </div>
+
+        </div>
 
     </div>
 
