@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,16 +38,21 @@
             margin-bottom: 60px;
         }
 
+        /*
+        The gallery grows automatically depending
+        on how many photographs are loaded.
+        */
+
         .gallery {
             position: relative;
             width: 100%;
-            min-height: 5000px;
+            min-height: 100vh;
         }
 
         .photo {
             position: absolute;
             width: 24vw;
-            max-width: 380px;
+            max-width: 360px;
             min-width: 180px;
             transition: transform 0.4s ease;
         }
@@ -59,42 +65,7 @@
 
         .photo:hover {
             transform: scale(1.04);
-            z-index: 10;
-        }
-
-        /* Individual positions */
-
-        .photo:nth-child(1)  { left: 4%;  top: 20px; }
-        .photo:nth-child(2)  { left: 48%; top: 80px; }
-        .photo:nth-child(3)  { left: 72%; top: 30px; }
-        .photo:nth-child(4)  { left: 22%; top: 420px; }
-        .photo:nth-child(5)  { left: 58%; top: 500px; }
-        .photo:nth-child(6)  { left: 5%;  top: 700px; }
-        .photo:nth-child(7)  { left: 38%; top: 820px; }
-        .photo:nth-child(8)  { left: 76%; top: 760px; }
-        .photo:nth-child(9)  { left: 15%; top: 1100px; }
-        .photo:nth-child(10) { left: 55%; top: 1150px; }
-        .photo:nth-child(11) { left: 78%; top: 1280px; }
-        .photo:nth-child(12) { left: 2%;  top: 1450px; }
-        .photo:nth-child(13) { left: 34%; top: 1500px; }
-        .photo:nth-child(14) { left: 64%; top: 1600px; }
-        .photo:nth-child(15) { left: 18%; top: 1800px; }
-        .photo:nth-child(16) { left: 50%; top: 1900px; }
-        .photo:nth-child(17) { left: 75%; top: 1850px; }
-        .photo:nth-child(18) { left: 5%;  top: 2150px; }
-        .photo:nth-child(19) { left: 40%; top: 2200px; }
-        .photo:nth-child(20) { left: 68%; top: 2300px; }
-
-        .photo:nth-child(3n) {
-            width: 18vw;
-        }
-
-        .photo:nth-child(4n) {
-            width: 28vw;
-        }
-
-        .photo:nth-child(5n) {
-            width: 20vw;
+            z-index: 100;
         }
 
         @media (max-width: 800px) {
@@ -103,43 +74,21 @@
                 padding: 25px;
             }
 
-            .gallery {
-                min-height: 6500px;
-            }
-
             .photo {
-                width: 42vw !important;
+                width: 40vw;
                 min-width: 130px;
             }
-
-            .photo:nth-child(1)  { left: 2%;  top: 20px; }
-            .photo:nth-child(2)  { left: 48%; top: 120px; }
-            .photo:nth-child(3)  { left: 15%; top: 400px; }
-            .photo:nth-child(4)  { left: 55%; top: 500px; }
-            .photo:nth-child(5)  { left: 5%;  top: 750px; }
-            .photo:nth-child(6)  { left: 50%; top: 850px; }
-            .photo:nth-child(7)  { left: 15%; top: 1150px; }
-            .photo:nth-child(8)  { left: 55%; top: 1250px; }
-            .photo:nth-child(9)  { left: 2%;  top: 1550px; }
-            .photo:nth-child(10) { left: 50%; top: 1650px; }
         }
 
         @media (max-width: 500px) {
 
-            .gallery {
-                min-height: 9000px;
+            body {
+                padding: 20px;
             }
 
             .photo {
-                width: 70vw !important;
-            }
-
-            .photo:nth-child(odd) {
-                left: 5%;
-            }
-
-            .photo:nth-child(even) {
-                left: 25%;
+                width: 65vw;
+                min-width: 120px;
             }
         }
     </style>
@@ -169,7 +118,43 @@
 
                 const gallery = document.getElementById("gallery");
 
-                data.photos.forEach(filename => {
+                const photos = data.photos;
+
+                /*
+                These positions create a loose, scattered
+                composition without allowing the images
+                to collapse into one another.
+
+                The pattern repeats with variation, so it
+                continues automatically beyond 20 images.
+                */
+
+                const positions = [
+                    [4, 0],
+                    [47, 80],
+                    [73, 30],
+                    [21, 430],
+                    [57, 520],
+                    [4, 760],
+                    [38, 850],
+                    [74, 780],
+                    [15, 1160],
+                    [54, 1200],
+                    [78, 1350],
+                    [2, 1530],
+                    [34, 1620],
+                    [64, 1680],
+                    [18, 1930],
+                    [50, 2020],
+                    [76, 1970],
+                    [5, 2260],
+                    [40, 2340],
+                    [68, 2420]
+                ];
+
+                const rowHeight = 2700;
+
+                photos.forEach((filename, index) => {
 
                     const container = document.createElement("div");
                     container.className = "photo";
@@ -185,7 +170,72 @@
                     container.appendChild(image);
                     gallery.appendChild(container);
 
+                    /*
+                    Repeat the positioning pattern vertically
+                    for every group of 20 photographs.
+                    */
+
+                    const patternIndex = index % positions.length;
+                    const cycle = Math.floor(index / positions.length);
+
+                    const position = positions[patternIndex];
+
+                    const left = position[0];
+
+                    /*
+                    Small deterministic variations prevent
+                    repeated rows from looking identical.
+                    */
+
+                    const variation =
+                        ((index * 37) % 90) - 45;
+
+                    const top =
+                        position[1] +
+                        (cycle * rowHeight) +
+                        variation;
+
+                    container.style.left = left + "%";
+                    container.style.top = top + "px";
+
+                    /*
+                    Vary photograph sizes slightly.
+                    */
+
+                    const sizePattern = index % 5;
+
+                    if (sizePattern === 0) {
+                        container.style.width = "23vw";
+                    }
+
+                    if (sizePattern === 1) {
+                        container.style.width = "19vw";
+                    }
+
+                    if (sizePattern === 2) {
+                        container.style.width = "26vw";
+                    }
+
+                    if (sizePattern === 3) {
+                        container.style.width = "21vw";
+                    }
+
+                    if (sizePattern === 4) {
+                        container.style.width = "24vw";
+                    }
+
                 });
+
+                /*
+                Calculate the total height of the gallery
+                automatically based on the number of images.
+                */
+
+                const totalCycles =
+                    Math.ceil(photos.length / positions.length);
+
+                gallery.style.minHeight =
+                    (totalCycles * rowHeight + 1000) + "px";
 
             })
             .catch(error => {
@@ -196,3 +246,4 @@
 
 </body>
 </html>
+```
